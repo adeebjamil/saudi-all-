@@ -318,10 +318,8 @@ const Service = () => {
 
       <div className="relative min-h-[120vh] bg-cover bg-center bg-fixed overflow-hidden"
            style={{
-             backgroundImage: `linear-gradient(165deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0.4) 100%), url('src/assets/img/audiovideo.jpg')`
+             backgroundImage: `linear-gradient(165deg, rgba(37, 99, 235, 0.95) 0%, rgba(37, 99, 235, 0.4) 25%, rgba(0, 0, 0, 0) 50%), url('src/assets/img/audiovideo.jpg')`
            }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10"></div>
-        
         <div className="container mx-auto px-6 min-h-screen flex items-center relative z-10 pt-32">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Main Content - Left Side */}
@@ -334,22 +332,22 @@ const Service = () => {
               >
                 {/* Badge */}
                 <motion.div 
-                  className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2"
+                  className="inline-flex items-center bg-white/90 backdrop-blur-sm rounded-full px-4 py-2"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <span className="text-blue-400 mr-2">★</span>
-                  <span className="text-white/90 text-sm font-medium">Trusted by Fortune 500 Companies</span>
+                  <span className="text-blue-600 mr-2">★</span>
+                  <span className="text-gray-800 text-sm font-medium">Trusted by Fortune 500 Companies</span>
                 </motion.div>
 
                 {/* Headlines */}
-                <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+                <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight">
                   Elevate Your <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
                     Digital Presence
                   </span>
                 </h1>
                 
-                <h2 className="text-xl lg:text-2xl text-white/80 max-w-xl leading-relaxed">
+                <h2 className="text-xl lg:text-2xl text-gray-700 max-w-xl leading-relaxed">
                   Transform your business with cutting-edge technology solutions designed for the modern digital landscape.
                 </h2>
 
@@ -369,7 +367,7 @@ const Service = () => {
                 </div>
 
                 {/* Stats Section */}
-                <div className="grid grid-cols-3 gap-8 pt-12 border-t border-white/10 mt-12">
+                <div className="grid grid-cols-3 gap-8 pt-12 border-t border-gray-200 mt-12">
                   {[
                     { number: "500+", label: "Projects Completed" },
                     { number: "98%", label: "Client Satisfaction" },
@@ -382,8 +380,8 @@ const Service = () => {
                       transition={{ delay: 0.5 + (index * 0.1) }}
                       className="text-center"
                     >
-                      <div className="text-2xl lg:text-3xl font-bold text-white mb-2">{stat.number}</div>
-                      <div className="text-sm text-white/60">{stat.label}</div>
+                      <div className="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                      <div className="text-sm text-gray-600">{stat.label}</div>
                     </motion.div>
                   ))}
                 </div>
@@ -405,11 +403,11 @@ const Service = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.8 + (index * 0.1) }}
                     whileHover={{ y: -5, scale: 1.02 }}
-                    className="bg-white/10 backdrop-blur-md rounded-xl p-6 hover:bg-white/15 transition-all duration-300"
+                    className="bg-white/90 backdrop-blur-md rounded-xl p-6 hover:bg-white/95 transition-all duration-300"
                   >
                     <div className="text-3xl mb-3">{feature.icon}</div>
-                    <h3 className="text-white font-semibold mb-1">{feature.title}</h3>
-                    <p className="text-white/70 text-sm">{feature.desc}</p>
+                    <h3 className="text-gray-900 font-semibold mb-1">{feature.title}</h3>
+                    <p className="text-gray-600 text-sm">{feature.desc}</p>
                   </motion.div>
                 ))}
               </div>

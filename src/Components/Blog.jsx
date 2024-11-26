@@ -18,7 +18,14 @@ const Container = styled.main`
   width: 100%;
   padding: 60px 20px;
   min-height: 100vh;
-  background: #fcfcfc;
+  background: linear-gradient(165deg, 
+    rgba(37, 99, 235, 0.95) 0%, 
+    rgba(37, 99, 235, 0.4) 25%, 
+    rgba(0, 0, 0, 0) 50%),
+    url('src/assets/img/white.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 
   @media (max-width: 768px) {
     padding: 40px 16px;
@@ -32,13 +39,13 @@ const Header = styled.header`
 
   h1 {
     font-size: 2.8rem;
-    color: #2d3748;
+    color: #1a237e;
     font-weight: 700;
     margin-bottom: 16px;
   }
 
   p {
-    color: #718096;
+    color: #000000;
     font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
@@ -149,28 +156,19 @@ const Blog = () => {
   const [posts] = useState([
     {
       id: 1,
-      title: 'The Future of Web Development',
-      category: 'Tech',
-      date: 'Mar 15, 2024',
-      author: 'Sarah Parker',
+      title: 'AI in Surveillance',
       content: 'Exploring upcoming trends and technologies...',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800'
     },
     {
       id: 2,
-      title: 'Building Scalable Applications',
-      category: 'Development',
-      date: 'Mar 12, 2024',
-      author: 'Mike Ross',
+      title: 'Artificial intelligence of things (AIoT)',
       content: 'Learn the best practices for creating scalable apps...',
       image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800'
     },
     {
       id: 3,
-      title: 'UI Design Principles',
-      category: 'Design',
-      date: 'Mar 10, 2024',
-      author: 'Emma Wilson',
+      title: '',
       content: 'Principles for user-friendly interfaces...',
       image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800'
     }

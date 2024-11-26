@@ -65,20 +65,20 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-white">
+    <footer className="relative overflow-hidden bg-sky-100">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           variants={floatVariants}
           initial="initial"
           animate="animate"
-          className="absolute top-20 left-[10%] w-64 h-64 bg-gray-50/50 rounded-full blur-3xl"
+          className="absolute top-20 left-[10%] w-64 h-64 bg-sky-200/50 rounded-full blur-3xl"
         />
         <motion.div
           variants={pulseVariants}
           initial="initial"
           animate="animate"
-          className="absolute top-1/3 right-[20%] w-72 h-72 bg-gray-50/40 rounded-full blur-2xl"
+          className="absolute top-1/3 right-[20%] w-72 h-72 bg-sky-200/40 rounded-full blur-2xl"
         />
         <motion.div
           variants={spinVariants}
@@ -87,7 +87,7 @@ const Footer = () => {
           className="absolute top-40 right-[30%] w-40 h-40"
           style={{ transformOrigin: 'center' }}
         >
-          <div className="w-full h-full border-4 border-gray-100/40 rounded-3xl" />
+          <div className="w-full h-full border-4 border-sky-200/40 rounded-3xl" />
         </motion.div>
       </div>
 
@@ -96,8 +96,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Company Name</h2>
-            <p className="text-gray-600 mb-6 max-w-md">
+            <h2 className="text-2xl font-bold text-blue-900 mb-4">Company Name</h2>
+            <p className="text-blue-700 mb-6 max-w-md">
               Empowering businesses with innovative solutions. We're dedicated to transforming ideas into exceptional digital experiences.
             </p>
             <div className="flex space-x-4">
@@ -107,7 +107,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 bg-gray-50 rounded-full text-gray-600 hover:bg-gray-900 hover:text-white transition-colors duration-300 shadow-sm"
+                  className="p-2 bg-white rounded-full text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300 shadow-sm"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -117,15 +117,15 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          {Object.entries(footerLinks).map(([category, links], index) => (
+          {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 capitalize">{category}</h3>
+              <h3 className="text-lg font-semibold text-blue-900 mb-4 capitalize">{category}</h3>
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-gray-600 hover:text-gray-900 transition-colors duration-300"
+                      className="text-blue-700 hover:text-blue-900 transition-colors duration-300"
                     >
                       {link.name}
                     </a>
@@ -137,10 +137,10 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-16 pt-8 border-t border-gray-100">
+        <div className="mt-16 pt-8 border-t border-blue-100">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600 text-sm">© {currentYear} Company Name. All rights reserved.</p>
-            <button className="mt-4 md:mt-0 px-6 py-2 bg-gray-900 text-white rounded-full font-medium hover:shadow-lg transition-shadow duration-300">
+            <p className="text-blue-700 text-sm">© {currentYear} Company Name. All rights reserved.</p>
+            <button className="mt-4 md:mt-0 px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300">
               Get Started
             </button>
           </div>

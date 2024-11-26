@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import { FaHeadset, FaPencilRuler, FaCode, FaTools, FaCog } from 'react-icons/fa';
 import { Helmet } from 'react-helmet';
 import React, { memo } from 'react';
+import { motion } from 'framer-motion';
 
 const HeroSection = styled.div`
   position: relative;
-  min-height: 100vh;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.3) 100%),
+  min-height: 120vh;
+  background: linear-gradient(165deg, 
+    rgba(37, 99, 235, 0.95) 0%, 
+    rgba(37, 99, 235, 0.4) 25%, 
+    rgba(0, 0, 0, 0) 50%),
     url('src/assets/img/audiovideo.jpg');
   background-size: cover;
   background-position: center;
@@ -18,12 +22,13 @@ const HeroSection = styled.div`
   overflow: hidden;
 `;
 
-const HeroContent = styled.div`
+const HeroContent = styled(motion.div)`
   position: relative;
   width: 100%;
   max-width: 1400px;
   margin: 0;
   padding-left: 5%;
+  z-index: 10;
   
   @media (max-width: 1200px) {
     padding-left: 6%;
@@ -33,19 +38,12 @@ const HeroContent = styled.div`
     padding: 0 1.5rem;
     text-align: center;
   }
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
 `;
 
 const MainHeading = styled.span`
   display: block;
   font-size: 0.875rem;
-  color: #E5E5E5;
+  color: #1a237e;
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -60,7 +58,7 @@ const MainHeading = styled.span`
     top: 50%;
     width: 30px;
     height: 1px;
-    background: linear-gradient(90deg, #E5E5E5, transparent);
+    background: linear-gradient(90deg, #1a237e, transparent);
     transform: scaleX(0);
     animation: lineGrow 0.8s ease-out 0.5s forwards;
   }
@@ -84,11 +82,11 @@ const SubHeading = styled.span`
   display: block;
   font-size: 3.5rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #1a237e;
   margin-bottom: 1.5rem;
   line-height: 1.1;
   max-width: 600px;
-  background: linear-gradient(120deg, #ffffff, #e5e5e5);
+  background: linear-gradient(120deg, #1a237e, #2b4162);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -102,11 +100,11 @@ const SubHeading = styled.span`
 
 const Description = styled.p`
   font-size: 1rem;
-  color: #E5E5E5;
+  color: #2b4162;
   margin: 1.5rem 0 2.5rem;
   max-width: 450px;
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.2px;
   opacity: 0;
   animation: fadeIn 1s ease-out 0.3s forwards;
@@ -123,10 +121,10 @@ const CtaButton = styled(Link)`
   align-items: center;
   padding: 0.9rem 2.5rem;
   background-color: transparent;
-  border: 1px solid #ffffff;
-  color: #ffffff;
+  border: 1px solid #60a5fa;
+  color: #60a5fa;
   text-decoration: none;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.8rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -141,7 +139,7 @@ const CtaButton = styled(Link)`
     left: -100%;
     width: 100%;
     height: 100%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(96, 165, 250, 0.1);
     transform: skewX(-20deg);
     transition: 0.5s;
   }
@@ -151,9 +149,9 @@ const CtaButton = styled(Link)`
   }
   
   &:hover {
-    background-color: #ffffff;
-    color: #000000;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    background-color: #60a5fa;
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(96, 165, 250, 0.3);
     transform: translateY(-2px);
   }
 
@@ -170,7 +168,7 @@ const CtaButton = styled(Link)`
 
 const ContentSection = styled.section`
   padding: 6rem 0;
-  background: #ffffff;
+  background: #f8faff;
   
   @media (max-width: 768px) {
     padding: 3rem 0;
@@ -198,7 +196,7 @@ const Grid = styled.div`
 
 const TextContent = styled.div`
   h2 {
-    color: #2B4162;
+    color: #60a5fa;
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     font-weight: 600;
@@ -210,7 +208,7 @@ const TextContent = styled.div`
   }
   
   p {
-    color: #666;
+    color: #64748b;
     font-size: 1rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
@@ -240,7 +238,7 @@ const Image = styled.img.attrs({
 
 const ServicesSection = styled.section`
   padding: 6rem 5%;
-  background: #ffffff;
+  background: #fafcff;
   text-align: center;
   
   @media (max-width: 768px) {
@@ -249,7 +247,7 @@ const ServicesSection = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  color: #2B4162;
+  color: #60a5fa;
   font-size: 2.5rem;
   margin-bottom: 3rem;
   text-align: center;
@@ -282,33 +280,33 @@ const ServicesGrid = styled.div`
 `;
 
 const ServiceCard = memo(styled.div`
-  background: white;
+  background: #ffffff;
   padding: 2rem 1.5rem;
   border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  box-shadow: 0 10px 30px rgba(96, 165, 250, 0.05);
   transition: transform 0.3s ease;
-  border: 1px solid #f5f5f5;
+  border: 1px solid rgba(96, 165, 250, 0.08);
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    background: #fafcff;
+    box-shadow: 0 15px 35px rgba(96, 165, 250, 0.08);
   }
   
   svg {
     font-size: 2.5rem;
-    color: #2B4162;
+    color: #60a5fa;
     margin-bottom: 1.5rem;
   }
   
   h3 {
-    color: #2B4162;
+    color: #60a5fa;
     font-size: 1.2rem;
     margin-bottom: 1rem;
     font-weight: 600;
   }
   
   p {
-    color: #666;
+    color: #64748b;
     font-size: 0.9rem;
     line-height: 1.6;
   }
@@ -350,15 +348,15 @@ const SolutionsGrid = styled.div`
 `;
 
 const SolutionCard = styled.div`
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.05);
   transition: all 0.3s ease;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    background: #fafcff;
+    box-shadow: 0 8px 30px rgba(96, 165, 250, 0.08);
   }
 `;
 
@@ -383,14 +381,14 @@ const CardContent = styled.div`
   padding: 1.5rem;
   
   h3 {
-    color: #2B4162;
+    color: #60a5fa;
     font-size: 1.3rem;
     margin-bottom: 0.8rem;
     font-weight: 600;
   }
   
   p {
-    color: #666;
+    color: #64748b;
     font-size: 0.95rem;
     line-height: 1.6;
   }
@@ -398,7 +396,7 @@ const CardContent = styled.div`
 
 const ProcessSection = styled.section`
   padding: 6rem 5%;
-  background: #ffffff;
+  background: #fafcff;
   
   @media (max-width: 768px) {
     padding: 3rem 1.5rem;
@@ -423,16 +421,16 @@ const ProcessGrid = styled.div`
 `;
 
 const ProcessCard = styled.div`
-  background: white;
+  background: #ffffff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.03);
   transition: all 0.3s ease;
   position: relative;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    background: #fafcff;
+    box-shadow: 0 8px 30px rgba(96, 165, 250, 0.06);
   }
   
   &::before {
@@ -442,7 +440,7 @@ const ProcessCard = styled.div`
     left: -15px;
     width: 40px;
     height: 40px;
-    background: #2B4162;
+    background: #60a5fa;
     color: white;
     border-radius: 50%;
     display: flex;
@@ -464,20 +462,20 @@ const ProcessCard = styled.div`
 `;
 
 const ProcessTitle = styled.h3`
-  color: #2B4162;
+  color: #60a5fa;
   font-size: 1.3rem;
   margin-bottom: 1rem;
   font-weight: 600;
 `;
 
 const ProcessDescription = styled.p`
-  color: #666;
+  color: #64748b;
   font-size: 0.95rem;
   line-height: 1.6;
 `;
 
 const SolutionsSection = styled.section`
-  background: #ffffff;
+  background: #f8faff;
   padding: 6rem 5%;
   
   @media (max-width: 768px) {
@@ -500,7 +498,21 @@ const AudioVideo = () => {
       </Helmet>
 
       <HeroSection>
-        <HeroContent>
+        <HeroContent
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+          >
+            <span className="text-blue-400 mr-2">★</span>
+            <span className="text-white/90 text-sm font-medium">Leading AV Solutions Provider</span>
+          </motion.div>
+
           <h1>
             <MainHeading>Professional Audio Visual Solutions Dubai</MainHeading>
             <SubHeading>Transform Spaces Through Advanced AV Technology</SubHeading>
@@ -509,9 +521,21 @@ const AudioVideo = () => {
             Elevate your environment with state-of-the-art audiovisual solutions. 
             We blend innovative technology with refined design for exceptional experiences.
           </Description>
-          <CtaButton to="/contact">
-            Get Started
-          </CtaButton>
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <CtaButton to="/contact">
+              Get Started
+              <motion.span
+                className="ml-2 inline-block"
+                animate={{ x: [0, 5, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5 }}
+              >
+                →
+              </motion.span>
+            </CtaButton>
+          </motion.div>
         </HeroContent>
       </HeroSection>
       

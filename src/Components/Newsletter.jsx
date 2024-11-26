@@ -2,14 +2,14 @@ import { CalendarDaysIcon, HandRaisedIcon } from '@heroicons/react/24/outline'
 
 export default function Example() {
   return (
-    <div className="relative isolate overflow-hidden bg-gray-50 py-16 sm:py-24 lg:py-32 hover:bg-white transition-colors duration-500">
+    <div className="relative isolate overflow-hidden bg-blue-50 py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
           <div className="max-w-xl lg:max-w-lg">
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 animate-fade-in hover:scale-105 transition-transform duration-300">
+            <h2 className="text-4xl font-semibold tracking-tight text-blue-900 animate-fade-in hover:scale-105 transition-transform duration-300">
               Subscribe to our newsletter
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-blue-600">
               Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt
               dolore.
             </p>
@@ -24,11 +24,11 @@ export default function Example() {
                 required
                 placeholder="Enter your email"
                 autoComplete="email"
-                className="min-w-0 flex-auto rounded-md border-0 bg-white px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-200 focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm/6 animate-slide-in hover:shadow-lg transition-shadow duration-300 focus:scale-105 transform"
+                className="min-w-0 flex-auto rounded-md border-0 bg-white px-3.5 py-2 text-blue-900 shadow-sm ring-1 ring-inset ring-blue-200 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm/6 animate-slide-in hover:shadow-lg transition-shadow duration-300 focus:scale-105 transform"
               />
               <button
                 type="submit"
-                className="flex-none rounded-md bg-gray-900 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 hover:scale-110 hover:rotate-2 active:scale-95 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+                className="flex-none rounded-md bg-blue-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 hover:scale-110 hover:rotate-2 active:scale-95 transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
                 Subscribe
               </button>
@@ -36,24 +36,24 @@ export default function Example() {
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
             <div className="flex flex-col items-start animate-fade-in group">
-              <div className="rounded-md bg-white p-2 ring-1 ring-gray-100 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg transition-all duration-300">
-                <CalendarDaysIcon aria-hidden="true" className="size-6 text-gray-700 group-hover:text-gray-900" />
+              <div className="rounded-md bg-white p-2 ring-1 ring-blue-100 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-lg transition-all duration-300">
+                <CalendarDaysIcon aria-hidden="true" className="size-6 text-blue-600 group-hover:text-blue-700" />
               </div>
-              <dt className="mt-4 text-base font-semibold text-gray-900 group-hover:translate-x-2 transition-transform duration-300">
+              <dt className="mt-4 text-base font-semibold text-blue-900 group-hover:translate-x-2 transition-transform duration-300">
                 Weekly articles
               </dt>
-              <dd className="mt-2 text-base/7 text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+              <dd className="mt-2 text-base/7 text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
                 Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.
               </dd>
             </div>
             <div className="flex flex-col items-start animate-fade-in group">
-              <div className="rounded-md bg-white p-2 ring-1 ring-gray-100 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-lg transition-all duration-300">
-                <HandRaisedIcon aria-hidden="true" className="size-6 text-gray-700 group-hover:text-gray-900" />
+              <div className="rounded-md bg-white p-2 ring-1 ring-blue-100 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-lg transition-all duration-300">
+                <HandRaisedIcon aria-hidden="true" className="size-6 text-blue-600 group-hover:text-blue-700" />
               </div>
-              <dt className="mt-4 text-base font-semibold text-gray-900 group-hover:translate-x-2 transition-transform duration-300">
+              <dt className="mt-4 text-base font-semibold text-blue-900 group-hover:translate-x-2 transition-transform duration-300">
                 No spam
               </dt>
-              <dd className="mt-2 text-base/7 text-gray-600 group-hover:text-gray-800 transition-colors duration-300">
+              <dd className="mt-2 text-base/7 text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
                 Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim.
               </dd>
             </div>
@@ -69,7 +69,7 @@ export default function Example() {
             clipPath:
               'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
           }}
-          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-gray-100 to-gray-50 opacity-30 animate-pulse hover:opacity-40 transition-opacity duration-700"
+          className="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-blue-100 to-blue-50 opacity-30 animate-pulse hover:opacity-40 transition-opacity duration-700"
         />
       </div>
     </div>

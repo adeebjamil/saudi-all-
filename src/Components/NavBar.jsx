@@ -7,7 +7,7 @@ const SearchOverlay = memo(({ searchOpen, searchQuery, setSearchQuery, handleSea
   if (!searchOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-md z-50 transition-all duration-300">
+    <div className="fixed inset-0 bg-blue-500/20 backdrop-blur-md z-50 transition-all duration-300">
       <div className="absolute inset-x-0 top-0 bg-white p-4 shadow-xl">
         <form onSubmit={handleSearch} className="max-w-3xl mx-auto relative">
           <input
@@ -15,7 +15,7 @@ const SearchOverlay = memo(({ searchOpen, searchQuery, setSearchQuery, handleSea
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Type to search..."
-            className="w-full pl-12 pr-12 py-3.5 bg-white/50 rounded-full border border-gray-200 text-gray-800 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base transition-all duration-200"
+            className="w-full pl-12 pr-12 py-3.5 bg-blue-50/50 rounded-full border border-blue-100 text-gray-800 placeholder-blue-400 focus:ring-2 focus:ring-blue-400 focus:border-transparent text-base transition-all duration-200"
             autoFocus
           />
           <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -86,8 +86,8 @@ const NavBar = () => {
     <>
       <nav className={`fixed w-full z-40 transition-all duration-300 ${
         scrolled
-          ? 'shadow-lg backdrop-blur-lg bg-white/95'
-          : 'bg-white'
+          ? 'shadow-lg backdrop-blur-lg bg-blue-50/95'
+          : 'bg-blue-50'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
@@ -97,10 +97,10 @@ const NavBar = () => {
               onClick={() => handleNavigation('/')}
               className="flex items-center space-x-3 flex-shrink-0"
             >
-              <div className="w-10 h-10 bg-gray-900 flex items-center justify-center rounded-xl shadow-lg">
+              <div className="w-10 h-10 bg-blue-600 flex items-center justify-center rounded-xl shadow-lg">
                 <span className="text-white text-xl font-bold">L</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">LOGO</span>
+              <span className="text-xl font-bold text-blue-900">LOGO</span>
             </Link>
 
             {/* Desktop Menu */}
@@ -112,8 +112,8 @@ const NavBar = () => {
                     onClick={() => handleNavigation(item.href)}
                     className={`px-5 py-2.5 rounded-full flex items-center text-sm font-medium transition-all duration-200 ${
                       activePage === item.href
-                        ? 'bg-gray-100 text-gray-900 font-bold'
-                        : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
+                        ? 'bg-blue-100 text-blue-900 font-bold'
+                        : 'text-blue-700 hover:text-blue-900 hover:bg-blue-100'
                     }`}
                   >
                     {item.title}
@@ -128,7 +128,7 @@ const NavBar = () => {
                           <Link
                             key={subItem}
                             to="#"
-                            className="block px-5 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150"
+                            className="block px-5 py-3 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-150"
                           >
                             {subItem}
                           </Link>
@@ -144,13 +144,13 @@ const NavBar = () => {
             <div className="flex items-center space-x-2">
               <button
                 onClick={() => setSearchOpen(true)}
-                className="p-2.5 rounded-full text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200"
+                className="p-2.5 rounded-full text-blue-700 hover:text-blue-900 hover:bg-blue-100 transition-all duration-200"
               >
                 <Search size={20} />
               </button>
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-full text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200 lg:hidden"
+                className="p-2.5 rounded-full text-blue-700 hover:text-blue-900 hover:bg-blue-100 transition-all duration-200 lg:hidden"
               >
                 {isOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -160,7 +160,7 @@ const NavBar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100">
+          <div className="lg:hidden bg-blue-50 border-t border-blue-100">
             <div className="max-w-7xl mx-auto py-3 px-4 sm:px-6">
               {menuItems.map((item) => (
                 <div key={item.title} className="py-1">
@@ -169,8 +169,8 @@ const NavBar = () => {
                     onClick={() => handleNavigation(item.href)}
                     className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm ${
                       activePage === item.href
-                        ? 'bg-gray-100 text-gray-900 font-bold'
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-blue-100 text-blue-900 font-bold'
+                        : 'text-blue-700 hover:bg-blue-100 hover:text-blue-900'
                     }`}
                   >
                     <span>{item.title}</span>
@@ -181,12 +181,12 @@ const NavBar = () => {
                     )}
                   </Link>
                   {item.submenu && (
-                    <div className="ml-4 mt-1 border-l-2 border-gray-100">
+                    <div className="ml-4 mt-1 border-l-2 border-blue-100">
                       {item.submenu.map((subItem) => (
                         <Link
                           key={subItem}
                           to="#"
-                          className="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 rounded-xl transition-colors duration-150"
+                          className="block px-4 py-3 text-sm text-blue-700 hover:bg-blue-100 hover:text-blue-900 rounded-xl transition-colors duration-150"
                         >
                           {subItem}
                         </Link>

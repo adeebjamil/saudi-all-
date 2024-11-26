@@ -9,26 +9,30 @@ const Logo = () => {
     { id: 5, src: '/path-to-logo5.png', alt: 'Company 5' },
     { id: 6, src: '/path-to-logo6.png', alt: 'Company 6' },
   ];
+  
+  const duplicatedLogos = [...logos, ...logos];
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-blue-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-3xl font-bold text-gray-900 mb-8">
           Trusted by leading companies
         </h2>
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
-          {logos.map((logo) => (
-            <div
-              key={logo.id}
-              className="col-span-1 flex justify-center items-center animate-float"
-            >
-              <img
-                className="h-12 object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                src={logo.src}
-                alt={logo.alt}
-              />
-            </div>
-          ))}
+        <div className="relative">
+          <div className="flex animate-carousel">
+            {duplicatedLogos.map((logo) => (
+              <div
+                key={`${logo.id}-${Math.random()}`}
+                className="flex-shrink-0 w-[200px] mx-8"
+              >
+                <img
+                  className="h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  src={logo.src}
+                  alt={logo.alt}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

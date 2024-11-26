@@ -52,15 +52,15 @@ const CountingNumber = ({ end, duration = 2000 }) => {
 
 const HeroSection = styled.div`
   position: relative;
-  min-height: 100vh;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.3) 100%),
-    url('src/assets/img/audiovideo.jpg'); // Update with your image path
+  min-height: 120vh;
+  background: linear-gradient(165deg, 
+    rgba(37, 99, 235, 0.95) 0%, 
+    rgba(37, 99, 235, 0.4) 25%, 
+    rgba(0, 0, 0, 0) 50%),
+    url('src/assets/img/audiovideo.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  padding: 0;
   overflow: hidden;
 `;
 
@@ -68,30 +68,24 @@ const HeroContent = styled.div`
   position: relative;
   width: 100%;
   max-width: 1400px;
-  margin: 0;
-  padding-left: 5%;
-  
-  @media (max-width: 1200px) {
-    padding-left: 6%;
-  }
-  
+  margin: 0 auto;
+  padding: 0 24px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  padding-top: 128px;
+
   @media (max-width: 768px) {
-    padding: 0 1.5rem;
+    padding: 128px 24px 0;
     text-align: center;
-  }
-  opacity: 0;
-  animation: fadeIn 1s ease-out forwards;
-  
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
   }
 `;
 
 const MainHeading = styled.span`
   display: block;
   font-size: 0.875rem;
-  color: #E5E5E5;
+  color: #2563eb;
   margin-bottom: 1rem;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -106,7 +100,7 @@ const MainHeading = styled.span`
     top: 50%;
     width: 30px;
     height: 1px;
-    background: linear-gradient(90deg, #E5E5E5, transparent);
+    background: linear-gradient(90deg, #2563eb, transparent);
     transform: scaleX(0);
     animation: lineGrow 0.8s ease-out 0.5s forwards;
   }
@@ -130,11 +124,11 @@ const SubHeading = styled.span`
   display: block;
   font-size: 3.5rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #1e293b;
   margin-bottom: 1.5rem;
   line-height: 1.1;
   max-width: 600px;
-  background: linear-gradient(120deg, #ffffff, #e5e5e5);
+  background: linear-gradient(120deg, #1e293b, #2563eb);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -148,11 +142,11 @@ const SubHeading = styled.span`
 
 const Description = styled.p`
   font-size: 1rem;
-  color: #E5E5E5;
+  color: #334155;
   margin: 1.5rem 0 2.5rem;
   max-width: 450px;
   line-height: 1.6;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.2px;
   opacity: 0;
   animation: fadeIn 1s ease-out 0.3s forwards;
@@ -180,13 +174,14 @@ const ServiceButton = styled(Link)`
   font-size: 0.95rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(37, 99, 235, 0.3);
   border-radius: 4px;
-  color: #ffffff;
+  color: #2563eb;
   text-decoration: none;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  background: white;
 
   &::before {
     content: '';
@@ -198,7 +193,7 @@ const ServiceButton = styled(Link)`
     background: linear-gradient(
       120deg,
       transparent,
-      rgba(255, 255, 255, 0.1),
+      rgba(37, 99, 235, 0.1),
       transparent
     );
     transition: 0.5s;
@@ -206,8 +201,8 @@ const ServiceButton = styled(Link)`
 
   &:hover {
     transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-color: rgba(37, 99, 235, 0.8);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.1);
 
     &::before {
       left: 100%;
@@ -317,22 +312,42 @@ const About = () => {
 
       <HeroSection>
         <HeroContent>
-          <h1>
-            <MainHeading>About Our Company</MainHeading>
-            <SubHeading>Transforming Ideas Into Digital Reality</SubHeading>
-          </h1>
-          <Description>
-            We are dedicated to delivering innovative solutions that drive real business 
-            growth and transformation. Our expertise and commitment to excellence set 
-            us apart in the digital landscape.
-          </Description>
-          <ButtonContainer
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          >
-            <ServiceButton to="/service">Our Services</ServiceButton>
-          </ButtonContainer>
+          <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="space-y-6"
+              >
+                {/* Badge */}
+                <motion.div 
+                  className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 py-2"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <span className="text-blue-400 mr-2">★</span>
+                  <span className="text-white/90 text-sm font-medium">Trusted by Fortune 500 Companies</span>
+                </motion.div>
+
+                <h1>
+                  <MainHeading>About Our Company</MainHeading>
+                  <SubHeading>Transforming Ideas Into Digital Reality</SubHeading>
+                </h1>
+                <Description>
+                  We are dedicated to delivering innovative solutions that drive real business 
+                  growth and transformation. Our expertise and commitment to excellence set 
+                  us apart in the digital landscape.
+                </Description>
+                <ButtonContainer
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                >
+                  <ServiceButton to="/service">Our Services</ServiceButton>
+                </ButtonContainer>
+              </motion.div>
+            </div>
+          </div>
         </HeroContent>
       </HeroSection>
 

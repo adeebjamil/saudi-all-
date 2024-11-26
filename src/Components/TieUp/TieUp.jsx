@@ -1,6 +1,21 @@
 // TieUp.jsx
 import React, { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
+import styled from 'styled-components';
+
+const TieUpSection = styled.section`
+  position: relative;
+  background: linear-gradient(165deg, 
+    rgba(37, 99, 235, 0.95) 0%, 
+    rgba(37, 99, 235, 0.4) 25%, 
+    rgba(0, 0, 0, 0) 50%),
+    url('src/assets/img/white.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 6rem 0;
+  overflow: hidden;
+`;
 
 const TieUp = () => {
   const containerVariants = {
@@ -31,7 +46,7 @@ const TieUp = () => {
         title: 'Premium Client',
         company: 'Tech Solutions Inc.',
         description:
-          'Leading technology solutions provider with over 10 years of excellence in digital transformation.',
+          'Uniview is a global leader in video surveillance solutions, renowned for its innovative technologies, high-quality products, and commitment to providing comprehensive security solutions. ',
         image: 'src/assets/img/unv.png', // Replace with your image path
         stats: '500+ Projects Delivered',
         color: 'bg-sky-50',
@@ -42,7 +57,7 @@ const TieUp = () => {
         title: 'Enterprise Partner',
         company: 'Global Innovations Ltd.',
         description:
-          'International consulting firm specializing in business strategy and innovation.',
+          'Hikvision’s leadership in the security industry is underpinned by their dedication to innovation. They continuously push the boundaries of what is possible in surveillance technology, offering features like AI-powered .',
         image: 'src/assets/img/hikevision.jpg', // Replace with your image path
         stats: '100+ Countries Served',
         color: 'bg-blue-50',
@@ -53,7 +68,7 @@ const TieUp = () => {
         title: 'Strategic Client',
         company: 'Future Dynamics',
         description:
-          'Next-generation AI and machine learning solutions for enterprise businesses.',
+          'Dahua’s technological leadership is demonstrated by innovations such as AI-powered surveillance systems, thermal imaging, and facial recognition technology. ',
         image: 'src/assets/img/dahua.png', // Replace with your image path
         stats: '50M+ Users Reached',
         color: 'bg-indigo-50',
@@ -130,10 +145,7 @@ const TieUp = () => {
   ));
 
   return (
-    <section
-      className="py-20 bg-white relative overflow-hidden"
-      aria-label="Featured Clients Section"
-    >
+    <TieUpSection aria-label="Featured Clients Section">
       <div className="container mx-auto px-4 relative">
         <motion.div
           initial="hidden"
@@ -145,7 +157,7 @@ const TieUp = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-5xl font-bold text-gray-900 mb-4"
+            className="text-5xl font-bold text-blue-900 mb-4"
           >
             Our Featured Clients
           </motion.h2>
@@ -153,7 +165,7 @@ const TieUp = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl text-gray-600 font-medium"
+            className="text-xl text-black font-medium"
           >
             Trusted by industry leaders worldwide
           </motion.p>
@@ -172,7 +184,7 @@ const TieUp = () => {
           ))}
         </motion.div>
       </div>
-    </section>
+    </TieUpSection>
   );
 };
 

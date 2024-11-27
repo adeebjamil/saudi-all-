@@ -10,8 +10,9 @@ export default function Example() {
               Subscribe to our newsletter
             </h2>
             <p className="mt-4 text-lg text-blue-600">
-              Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt
-              dolore.
+              🚀 Step into the future of digital excellence! Join our constellation of innovators where we blend 
+              cutting-edge insights with transformative strategies. Get ready for weekly doses of inspiration that 
+              turn ambitious dreams into remarkable realities.
             </p>
             <div className="mt-6 flex max-w-md gap-x-4 group">
               <label htmlFor="email-address" className="sr-only">
@@ -43,7 +44,8 @@ export default function Example() {
                 Weekly articles
               </dt>
               <dd className="mt-2 text-base/7 text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
-                Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.
+                ✨ Unlock a treasury of innovation! Each week, dive into carefully crafted content that bridges 
+                the gap between visionary thinking and practical excellence.
               </dd>
             </div>
             <div className="flex flex-col items-start animate-fade-in group">
@@ -54,7 +56,8 @@ export default function Example() {
                 No spam
               </dt>
               <dd className="mt-2 text-base/7 text-blue-600 group-hover:text-blue-700 transition-colors duration-300">
-                Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim.
+                🛡️ Quality is our promise! Experience a curated flow of pure inspiration - where every word matters, 
+                every insight counts, and every message sparks innovation.
               </dd>
             </div>
           </dl>

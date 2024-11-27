@@ -98,7 +98,9 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold text-blue-900 mb-4">Company Name</h2>
             <p className="text-blue-700 mb-6 max-w-md">
-              Empowering businesses with innovative solutions. We're dedicated to transforming ideas into exceptional digital experiences.
+              ⚡ Empowering businesses with innovative solutions. We're dedicated to transforming ideas into exceptional digital experiences. 
+              From pixel-perfect designs to lightning-fast performance, we craft digital masterpieces that leave lasting impressions. 
+              Let's build something extraordinary together! 🚀
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (

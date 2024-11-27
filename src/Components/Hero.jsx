@@ -174,14 +174,14 @@ const Hero = () => {
     <HeroSection
       aria-label="Hero Section"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 lg:pt-32 pb-16 relative">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-16 relative">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-12">
           {/* Left Content */}
           <motion.article
             variants={container}
             initial="hidden"
             animate="visible"
-            className="flex-1 text-center lg:text-left space-y-6 sm:space-y-8"
+            className="flex-1 text-center lg:text-left space-y-8 sm:space-y-8 pt-8 sm:pt-0"
           >
 
             <motion.h1
@@ -227,12 +227,12 @@ const Hero = () => {
           {/* Right Image Section */}
           <motion.div
             variants={slideIn}
-            className="flex-1 hidden lg:block mt-12 lg:mt-0"
+            className="flex-1 lg:block mt-12 lg:mt-0"
           >
             <img
               src="src/assets/img/hero.jpg"
               alt="Transform Your Business"
-              className="w-full object-cover rounded-lg shadow-lg"
+              className="w-full h-[300px] lg:h-auto object-cover rounded-lg shadow-lg"
             />
           </motion.div>
         </div>

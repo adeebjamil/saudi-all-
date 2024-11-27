@@ -44,10 +44,10 @@ const TieUp = () => {
       {
         id: 1,
         title: 'Premium Client',
-        company: 'Tech Solutions Inc.',
+        company: 'Uniview Technologies Co., Ltd.',
         description:
           'Uniview is a global leader in video surveillance solutions, renowned for its innovative technologies, high-quality products, and commitment to providing comprehensive security solutions. ',
-        image: 'src/assets/img/unv.png', // Replace with your image path
+        image: 'src/assets/img/unv/unv.png', // Replace with your image path
         stats: '500+ Projects Delivered',
         color: 'bg-sky-50',
         link: '/unv',
@@ -55,10 +55,10 @@ const TieUp = () => {
       {
         id: 2,
         title: 'Enterprise Partner',
-        company: 'Global Innovations Ltd.',
+        company: 'Hikvision Digital Technology Co., Ltd.',
         description:
           'Hikvision’s leadership in the security industry is underpinned by their dedication to innovation. They continuously push the boundaries of what is possible in surveillance technology, offering features like AI-powered .',
-        image: 'src/assets/img/hikevision.jpg', // Replace with your image path
+        image: 'src/assets/img/hikvision/hikvision.jpg', // Replace with your image path
         stats: '100+ Countries Served',
         color: 'bg-blue-50',
         link: '/hikvision',
@@ -66,10 +66,10 @@ const TieUp = () => {
       {
         id: 3,
         title: 'Strategic Client',
-        company: 'Future Dynamics',
+        company: 'Dahua Technology Co., Ltd',
         description:
           'Dahua’s technological leadership is demonstrated by innovations such as AI-powered surveillance systems, thermal imaging, and facial recognition technology. ',
-        image: 'src/assets/img/dahua.png', // Replace with your image path
+        image: 'src/assets/img/dahua/dahua.png', // Replace with your image path
         stats: '50M+ Users Reached',
         color: 'bg-indigo-50',
         link: '/dahua',

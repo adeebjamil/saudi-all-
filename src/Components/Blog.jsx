@@ -158,19 +158,19 @@ const Blog = () => {
       id: 1,
       title: 'AI in Surveillance',
       content: 'Utilizes computer software programs that analyze the audio and images from video surveillance cameras in order to recognize humans, vehicles, objects, attributes, and events',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800'
+      image: 'src/assets/img/blog/AI in Surveillance_1.png'
     },
     {
       id: 2,
       title: 'Artificial intelligence of things (AIoT)',
       content: 'Is the combination of artificial intelligence (AI) technologies with the Internet of things (IoT) infrastructure to achieve more efficient IoT operations, improve human-machine interactions and enhance data management and analytics.',
-      image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800'
+      image: 'src/assets/img/blog/AIoT_1.png'
     },
     {
       id: 3,
       title: 'IT Ecosystem Infrastructure',
       content: 'Deals with the IT hardware (compute, storage, net), operating systems, basic services and platforms (virtualisation) for cloud services. The overall infrastructure approach is determined by quality (e.g. availability), security and economic efficiency',
-      image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?w=800'
+      image: 'src/assets/img/blog/IT Ecosystem Infrastructure_1.png'
     }
   ]);
 

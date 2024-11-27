@@ -6,6 +6,15 @@ import { Link, useLocation } from 'react-router-dom';
 const SearchOverlay = memo(({ searchOpen, searchQuery, setSearchQuery, handleSearch, onClose }) => {
   if (!searchOpen) return null;
 
+  const handleKeyDown = useCallback((e) => {
+    if (e.key === 'Escape') onClose();
+  }, [onClose]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
+
   return (
     <div className="fixed inset-0 bg-blue-500/20 backdrop-blur-md z-50 transition-all duration-300">
       <div className="absolute inset-x-0 top-0 bg-white p-4 shadow-xl">
@@ -30,6 +39,56 @@ const SearchOverlay = memo(({ searchOpen, searchQuery, setSearchQuery, handleSea
       </div>
     </div>
   );
+}, (prevProps, nextProps) => {
+  return prevProps.searchOpen === nextProps.searchOpen && 
+         prevProps.searchQuery === nextProps.searchQuery;
+});
+
+// Extract menu items outside component to prevent recreating on each render
+const MENU_ITEMS = [
+  { title: 'Home', href: '/' },
+  { title: 'Audio & Video', href: '/audiovideo' },
+  { title: 'Service', href: '/service' },
+  { title: 'Clients', href: '/Client' },
+  { title: 'About', href: '/about' },
+  { title: 'Contact', href: '/contact' },
+];
+
+// Extract reusable components
+const MenuItem = memo(({ item, activePage, handleNavigation }) => {
+  return (
+    <div key={item.title} className="relative group">
+      <Link
+        to={item.href}
+        onClick={() => handleNavigation(item.href)}
+        className={`px-5 py-2.5 rounded-full flex items-center text-sm font-medium transition-all duration-200 ${
+          activePage === item.href
+            ? 'bg-blue-100 text-blue-900 font-bold'
+            : 'text-blue-700 hover:text-blue-900 hover:bg-blue-100'
+        }`}
+      >
+        {item.title}
+        {item.submenu && (
+          <ChevronDown size={16} className="ml-2 group-hover:rotate-180 transition-transform duration-300" />
+        )}
+      </Link>
+      {item.submenu && (
+        <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
+          <div className="py-2">
+            {item.submenu.map((subItem) => (
+              <Link
+                key={subItem}
+                to="#"
+                className="block px-5 py-3 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-150"
+              >
+                {subItem}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 });
 
 // NavBar Component
@@ -45,23 +104,17 @@ const NavBar = () => {
     setActivePage(location.pathname);
   }, [location]);
 
-  const menuItems = useMemo(() => [
-    { title: 'Home', href: '/' },
-    { title: 'Audio & Video', href: '/audiovideo' },
-    { title: 'Service', href: '/service' },
- 
+  useEffect(() => {
+    const handleScroll = debounce(() => {
+      setScrolled(window.scrollY > 50);
+    }, 100);
 
-    {
-      title: 'Clients',
-      href: '/Client',
-    },
-
-    
-    { title: 'About', href: '/about' },
-    { title: 'Contact', href: '/contact' },
-
-
-  ], []);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      handleScroll.cancel();
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleSearch = useCallback((e) => {
     e.preventDefault();
@@ -73,13 +126,7 @@ const NavBar = () => {
   const handleNavigation = useCallback((href) => {
     setActivePage(href);
     setIsOpen(false);
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   return (
@@ -97,46 +144,17 @@ const NavBar = () => {
               onClick={() => handleNavigation('/')}
               className="flex items-center space-x-3 flex-shrink-0"
             >
-              <div className="w-10 h-10 bg-blue-600 flex items-center justify-center rounded-xl shadow-lg">
-                <span className="text-white text-xl font-bold">L</span>
-              </div>
-              <span className="text-xl font-bold text-blue-900">LOGO</span>
+              <img 
+                src="src/assets/img/logo.png" 
+                alt="Company Logo"
+                className="w-22 h-20 object-contain"
+              />
             </Link>
 
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center space-x-1">
-              {menuItems.map((item) => (
-                <div key={item.title} className="relative group">
-                  <Link
-                    to={item.href}
-                    onClick={() => handleNavigation(item.href)}
-                    className={`px-5 py-2.5 rounded-full flex items-center text-sm font-medium transition-all duration-200 ${
-                      activePage === item.href
-                        ? 'bg-blue-100 text-blue-900 font-bold'
-                        : 'text-blue-700 hover:text-blue-900 hover:bg-blue-100'
-                    }`}
-                  >
-                    {item.title}
-                    {item.submenu && (
-                      <ChevronDown size={16} className="ml-2 group-hover:rotate-180 transition-transform duration-300" />
-                    )}
-                  </Link>
-                  {item.submenu && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
-                      <div className="py-2">
-                        {item.submenu.map((subItem) => (
-                          <Link
-                            key={subItem}
-                            to="#"
-                            className="block px-5 py-3 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-150"
-                          >
-                            {subItem}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
+              {MENU_ITEMS.map((item) => (
+                <MenuItem key={item.title} item={item} activePage={activePage} handleNavigation={handleNavigation} />
               ))}
             </div>
 
@@ -162,7 +180,7 @@ const NavBar = () => {
         {isOpen && (
           <div className="lg:hidden bg-blue-50 border-t border-blue-100">
             <div className="max-w-7xl mx-auto py-3 px-4 sm:px-6">
-              {menuItems.map((item) => (
+              {MENU_ITEMS.map((item) => (
                 <div key={item.title} className="py-1">
                   <Link
                     to={item.href}
@@ -211,5 +229,16 @@ const NavBar = () => {
     </>
   );
 };
+
+// Utility function for debounce
+function debounce(func, wait) {
+  let timeout;
+  const debouncedFn = function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+  debouncedFn.cancel = () => clearTimeout(timeout);
+  return debouncedFn;
+}
 
 export default memo(NavBar);

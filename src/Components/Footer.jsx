@@ -9,15 +9,13 @@ const footerLinks = {
     { name: 'Contact', href: '/contact' },
   ],
   services: [
-    { name: 'Web Development', href: '/service/web-development' },
-    { name: 'Mobile Apps', href: '/service/mobile-apps' },
-    { name: 'Cloud Solutions', href: '/service/cloud-solutions' },
+    { name: 'Web Development', href: '/Service' },
+    { name: 'Mobile Apps', href: '/Service' },
+    { name: 'Cloud Solutions', href: '/Service' },
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy-policy' },
-    { name: 'Terms of Service', href: '/terms-of-service' },
-    { name: 'Cookie Policy', href: '/cookie-policy' },
-    { name: 'Security', href: '/security' },
+
   ],
 };
 

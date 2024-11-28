@@ -15,6 +15,7 @@ const About = lazy(() => import('./pages/About'));
 const Service = lazy(() => import('./pages/Service'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Client = lazy(() => import('./pages/Clients'));
+const Privacy = lazy(() => import('./pages/Privacy'));
 const AudioVideo = lazy(() => import('./pages/AudioVideo'));
 const Unv = lazy(() => import('./pages/Unv'));
 const Hikvision = lazy(() => import('./pages/hikvision'));
@@ -51,13 +52,15 @@ const App = () => {
               {/* Client Page */}
               <Route path="/Client" element={<Client />} />
               {/* AudioVideo Page */}
-              <Route path="/AudioVideo" element={<AudioVideo />} />
+              <Route path="/AudioVideo" element={<AudioVideo />} /> 
               {/* Hikvision Page */}
               <Route path="/Hikvision" element={<Hikvision />} />
               {/* Dahua Page */}
               <Route path="/Dahua" element={<Dahua />} />
               {/* Unv Page */}
               <Route path="/Unv" element={<Unv />} />
+              {/* Privacy Page */}
+              <Route path="/Privacy" element={<Privacy />} />
               {/* Catch-all route for undefined paths */}
               <Route path="*" element={<NotFound />} /> {/* This will display the NotFound component */}
             </Routes>

@@ -14,7 +14,7 @@ const footerLinks = {
     { name: 'Cloud Solutions', href: '/Service' },
   ],
   legal: [
-    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Privacy Policy', href: '/Privacy' },
 
   ],
 };

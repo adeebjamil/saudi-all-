@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Helmet } from 'react-helmet-async';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 
 const slideUp = keyframes`
@@ -22,7 +22,7 @@ const Container = styled.main`
     rgba(37, 99, 235, 0.95) 0%, 
     rgba(37, 99, 235, 0.4) 25%, 
     rgba(0, 0, 0, 0) 50%),
-    url('src/assets/img/white.jpg');
+    url('src/assets/img/white.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -158,19 +158,19 @@ const Blog = () => {
       id: 1,
       title: 'AI in Surveillance',
       content: 'Utilizes computer software programs that analyze the audio and images from video surveillance cameras in order to recognize humans, vehicles, objects, attributes, and events',
-      image: 'src/assets/img/blog/AI in Surveillance_1.png'
+      image: 'src/assets/img/blog/AI in Surveillance_1.webp'
     },
     {
       id: 2,
       title: 'Artificial intelligence of things (AIoT)',
       content: 'Is the combination of artificial intelligence (AI) technologies with the Internet of things (IoT) infrastructure to achieve more efficient IoT operations, improve human-machine interactions and enhance data management and analytics.',
-      image: 'src/assets/img/blog/AIoT_1.png'
+      image: 'src/assets/img/blog/AIoT_1.webp'
     },
     {
       id: 3,
       title: 'IT Ecosystem Infrastructure',
       content: 'Deals with the IT hardware (compute, storage, net), operating systems, basic services and platforms (virtualisation) for cloud services. The overall infrastructure approach is determined by quality (e.g. availability), security and economic efficiency',
-      image: 'src/assets/img/blog/IT Ecosystem Infrastructure_1.png'
+      image: 'src/assets/img/blog/IT Ecosystem Infrastructure_1.webp'
     }
   ]);
 
@@ -181,10 +181,11 @@ const Blog = () => {
   };
 
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <title>Latest Blog Articles | Your Blog</title>
         <meta name="description" content="Discover insights from our experts on web development, scalability, and design." />
+        <meta name="keywords" content="blog, articles, web development, scalability, design" />
       </Helmet>
 
       <Container>
@@ -216,7 +217,7 @@ const Blog = () => {
           ))}
         </Grid>
       </Container>
-    </>
+    </HelmetProvider>
   );
 };
 

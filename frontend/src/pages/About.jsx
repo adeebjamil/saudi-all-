@@ -4,8 +4,10 @@ import { useInView } from 'react-intersection-observer';
 import NavBar from '../Components/NavBar';
 import { GradientButton, OutlineButton } from '../Components/Button/Button1';
 import styled from 'styled-components';
-import { Helmet } from 'react-helmet';
+import { HelmetProvider } from 'react-helmet-async';
+import SEO from '../Components/SEO';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const CountingNumber = ({ end, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -57,7 +59,7 @@ const HeroSection = styled.div`
     rgba(37, 99, 235, 0.95) 0%, 
     rgba(37, 99, 235, 0.4) 25%, 
     rgba(0, 0, 0, 0) 50%),
-    url('src/assets/img/audiovideo.jpg');
+    url('src/assets/img/white.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -304,10 +306,75 @@ const About = () => {
   };
 
   return (
-    <>
+    <HelmetProvider>
+      <SEO
+        title="About Us | Lovosis Technology"
+        description="Learn about Lovosis Technology's journey, mission, and vision for the future."
+        keywords="Lovosis Technology, about us, mission, vision, team"
+      />
+
       <Helmet>
-        <title>About Us | Your Company Name</title>
-        <meta name="description" content="Learn about our company's journey, mission, and vision for the future." />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://www.lovosistech.com/#organization",
+                "name": "Lovosis Technology",
+                "url": "https://www.lovosistech.com",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.lovosistech.com/logo.png",
+                  "width": 112,
+                  "height": 112
+                },
+                "sameAs": [
+                  "https://www.facebook.com/lovosistech",
+                  "https://www.linkedin.com/company/lovosistech",
+                  "https://twitter.com/lovosistech"
+                ],
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "telephone": "+971-XXX-XXXX",
+                  "contactType": "customer service",
+                  "areaServed": "AE",
+                  "availableLanguage": ["en", "ar"]
+                }
+              },
+              {
+                "@type": "AboutPage",
+                "@id": "https://www.lovosistech.com/about/#webpage",
+                "url": "https://www.lovosistech.com/about/",
+                "name": "About Us | Lovosis Technology",
+                "isPartOf": { "@id": "https://www.lovosistech.com/#website" },
+                "about": { "@id": "https://www.lovosistech.com/#organization" },
+                "description": "Learn about Lovosis Technology's journey, mission, and vision for the future.",
+                "breadcrumb": {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "item": {
+                        "@id": "https://www.lovosistech.com/",
+                        "name": "Home"
+                      }
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "item": {
+                        "@id": "https://www.lovosistech.com/about/",
+                        "name": "About Us"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          })}
+        </script>
       </Helmet>
 
       <HeroSection>
@@ -485,7 +552,7 @@ const About = () => {
                   {/* Responsive image container */}
                   <div className="relative aspect-w-16 aspect-h-12 md:aspect-h-9">
                     <motion.img 
-                      src="src/assets/img/dahua.png" 
+                      src="src/assets/img/hero.webp" 
                       alt="Growth Chart 2023"
                       className="w-full h-full object-cover"
                       initial={{ scale: 1.1 }}
@@ -840,7 +907,7 @@ const About = () => {
           </div>
         </section>
       </div>
-    </>
+    </HelmetProvider>
   );
 };
 

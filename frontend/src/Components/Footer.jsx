@@ -140,9 +140,6 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-blue-100">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-blue-700 text-sm">© {currentYear} Company Name. All rights reserved.</p>
-            <button className="mt-4 md:mt-0 px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 hover:shadow-lg transition-all duration-300">
-              Get Started
-            </button>
           </div>
         </div>
       </div>

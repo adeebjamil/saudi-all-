@@ -1,48 +1,7 @@
-import React, { useState, useEffect, useCallback, useMemo, memo } from 'react';
-import { Menu, X, Search, ChevronDown } from 'lucide-react';
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-
-// Search Overlay Component
-const SearchOverlay = memo(({ searchOpen, searchQuery, setSearchQuery, handleSearch, onClose }) => {
-  if (!searchOpen) return null;
-
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'Escape') onClose();
-  }, [onClose]);
-
-  useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
-
-  return (
-    <div className="fixed inset-0 bg-blue-500/20 backdrop-blur-md z-50 transition-all duration-300">
-      <div className="absolute inset-x-0 top-0 bg-white p-4 shadow-xl">
-        <form onSubmit={handleSearch} className="max-w-3xl mx-auto relative">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Type to search..."
-            className="w-full pl-12 pr-12 py-3.5 bg-blue-50/50 rounded-full border border-blue-100 text-gray-800 placeholder-blue-400 focus:ring-2 focus:ring-blue-400 focus:border-transparent text-base transition-all duration-200"
-            autoFocus
-          />
-          <Search size={20} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 p-2 rounded-full transition-all duration-200"
-          >
-            <X size={20} />
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}, (prevProps, nextProps) => {
-  return prevProps.searchOpen === nextProps.searchOpen && 
-         prevProps.searchQuery === nextProps.searchQuery;
-});
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Extract menu items outside component to prevent recreating on each render
 const MENU_ITEMS = [
@@ -96,9 +55,19 @@ const NavBar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const [activePage, setActivePage] = useState(location.pathname);
+
+  // Dropdown solutions menu items
+  const solutions = [
+    "Meeting Room Solutions",
+    "Smart Classroom Solutions",
+    "BGM Solutions",
+    "PA and VA Systems",
+    "Home Cinema",
+    "Command & Control Center Solutions",
+    "LED & Video Wall Solutions",
+    "Crisis Management Solutions"
+  ];
 
   useEffect(() => {
     setActivePage(location.pathname);
@@ -116,13 +85,6 @@ const NavBar = () => {
     };
   }, []);
 
-  const handleSearch = useCallback((e) => {
-    e.preventDefault();
-    console.log('Searching for:', searchQuery);
-    setSearchOpen(false);
-    setSearchQuery('');
-  }, [searchQuery]);
-
   const handleNavigation = useCallback((href) => {
     setActivePage(href);
     setIsOpen(false);
@@ -130,7 +92,65 @@ const NavBar = () => {
   }, []);
 
   return (
-    <>
+    <HelmetProvider>
+      <Helmet>
+        <title>Navigation | Your Company Name</title>
+        <meta name="description" content="Navigate through our website to explore various sections and services we offer including audio-video solutions, services, client projects and more." />
+        <meta name="keywords" content="navigation, menu, services, audio video solutions, smart classroom, meeting room solutions" />
+        
+        {/* OpenGraph tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Navigation | Your Company Name" />
+        <meta property="og:description" content="Explore our comprehensive range of solutions and services" />
+
+        {/* Schema.org JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://yourwebsite.com/#organization",
+                "name": "Your Company Name",
+                "url": "https://yourwebsite.com",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://yourwebsite.com/logo.webp"
+                }
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://yourwebsite.com/#website",
+                "url": "https://yourwebsite.com",
+                "name": "Your Company Name",
+                "publisher": {
+                  "@id": "https://yourwebsite.com/#organization"
+                }
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "name": "Main Navigation",
+                "hasPart": MENU_ITEMS.map(item => ({
+                  "@type": "SiteNavigationElement",
+                  "name": item.title,
+                  "url": `https://yourwebsite.com${item.href}`
+                }))
+              },
+              {
+                "@type": "BreadcrumbList",
+                "itemListElement": MENU_ITEMS.map((item, index) => ({
+                  "@type": "ListItem",
+                  "position": index + 1,
+                  "item": {
+                    "@id": `https://yourwebsite.com${item.href}`,
+                    "name": item.title
+                  }
+                }))
+              }
+            ]
+          })}
+        </script>
+      </Helmet>
       <nav className={`fixed w-full z-40 transition-all duration-300 ${
         scrolled
           ? 'shadow-lg backdrop-blur-lg bg-blue-50/95'
@@ -145,9 +165,10 @@ const NavBar = () => {
               className="flex items-center space-x-3 flex-shrink-0"
             >
               <img 
-                src="src/assets/img/logo.png" 
+                src="src/assets/img/logo/logo.webp" 
                 alt="Company Logo"
                 className="w-22 h-20 object-contain"
+                loading="lazy"
               />
             </Link>
 
@@ -159,13 +180,29 @@ const NavBar = () => {
             </div>
 
             {/* Right Side Actions */}
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setSearchOpen(true)}
-                className="p-2.5 rounded-full text-blue-700 hover:text-blue-900 hover:bg-blue-100 transition-all duration-200"
-              >
-                <Search size={20} />
-              </button>
+            <div className="flex items-center space-x-2 relative">
+              <div className="relative group">
+                <button
+                  className="p-2.5 rounded-full text-blue-700 hover:text-blue-900 hover:bg-blue-100 transition-all duration-200"
+                >
+                  <ChevronDown size={20} />
+                </button>
+                {/* Dropdown Menu */}
+                <div className="absolute top-full right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                  <div className="py-2">
+                    {solutions.map((solution, index) => (
+                      <Link
+                        key={index}
+                        to="#"
+                        className="block px-5 py-3 text-sm text-blue-700 hover:bg-blue-50 hover:text-blue-900 transition-colors duration-150"
+                      >
+                        {solution}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2.5 rounded-full text-blue-700 hover:text-blue-900 hover:bg-blue-100 transition-all duration-200 lg:hidden"
@@ -217,16 +254,7 @@ const NavBar = () => {
           </div>
         )}
       </nav>
-
-      {/* Search Overlay */}
-      <SearchOverlay
-        searchOpen={searchOpen}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        handleSearch={handleSearch}
-        onClose={() => setSearchOpen(false)}
-      />
-    </>
+    </HelmetProvider>
   );
 };
 

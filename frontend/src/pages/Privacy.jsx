@@ -1,17 +1,18 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Privacy = () => {
     return (
-        <>
+        <HelmetProvider>
             <Helmet>
                 <title>Privacy Policy | Your Company Name</title>
                 <meta
                     name="description"
                     content="Our privacy policy outlines how we collect, use, and protect your personal information in accordance with Saudi Arabian laws and regulations."
                 />
+                <meta name="keywords" content="privacy policy, personal information, data protection, Saudi Arabian laws" />
             </Helmet>
 
             <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4 sm:px-6 lg:px-8">
@@ -167,7 +168,7 @@ const Privacy = () => {
                     </motion.div>
                 </div>
             </div>
-        </>
+        </HelmetProvider>
     );
 };
 

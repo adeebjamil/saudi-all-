@@ -1,62 +1,13 @@
-import React from 'react';
-import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
-import { FiCheck, FiAward, FiUsers, FiClock } from 'react-icons/fi';
-import { Helmet } from 'react-helmet';
-import { memo } from 'react';
-import styled from 'styled-components';
+import React, { memo } from 'react';
+import { motion } from 'framer-motion';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-
-const AnimatedCounter = memo(({ value, suffix = "" }) => {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, latest => Math.round(latest));
-
-  React.useEffect(() => {
-    if (isInView) {
-      const controls = animate(count, parseInt(value), {
-        duration: 2,
-        ease: "easeOut"
-      });
-      return controls.stop;
-    }
-  }, [isInView, count, value]);
-
-  return (
-    <div ref={ref} className="inline-flex items-center">
-      <motion.span>{rounded}</motion.span>
-      <span className="ml-1">{suffix}</span>
-    </div>
-  );
-});
-
-const ProcessStep = memo(({ step, index }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
-      className="relative bg-white rounded-xl p-8 shadow-sm hover:shadow-lg transition-all duration-300"
-    >
-      {/* Content */}
-      <div className="relative z-10">
-        <div className="text-4xl mb-6">{step.icon}</div>
-        <h3 className="text-xl font-bold text-gray-900 mb-3">
-          {step.title}
-        </h3>
-        <p className="text-gray-600">
-          {step.description}
-        </p>
-      </div>
-
-      {/* Connector Line (except for last item) */}
-      {index < 3 && (
-        <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-blue-200 transform -translate-y-1/2" />
-      )}
-    </motion.div>
-  );
-});
+import styled from 'styled-components';
+import AnimatedCounter from '../Components/AnimatedCounter';
+import ProcessStep from '../Components/ProcessStep';
+import ServiceCard from '../Components/ServiceCard';
+import FAQItem from '../Components/FAQItem';
+import { FiAward, FiUsers, FiClock, FiCheck } from 'react-icons/fi';
 
 const SERVICES = [
   {
@@ -136,93 +87,11 @@ const FAQS = [
   }
 ];
 
-const ServiceCard = memo(({ service, index }) => (
-  <motion.article
-    key={service.id}
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: "-100px" }}
-    transition={{ duration: 0.5, delay: index * 0.2 }}
-    whileHover={{ 
-      y: -8, 
-      scale: 1.02,
-      transition: { duration: 0.3 } 
-    }}
-    className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300"
-  >
-    <motion.div 
-      className="text-4xl mb-4"
-      whileHover={{ 
-        scale: 1.2,
-        rotate: [0, -10, 10, 0],
-      }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 300,
-        duration: 0.6 
-      }}
-    >
-      {service.icon}
-    </motion.div>
-    <h3 className="text-xl font-bold text-gray-900 mb-3">
-      {service.title}
-    </h3>
-    <p className="text-gray-600 mb-6">
-      {service.description}
-    </p>
-    <ul className="space-y-2">
-      {service.features.map((feature, idx) => (
-        <motion.li 
-          key={idx} 
-          className="flex items-center text-gray-600"
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 + (idx * 0.1) }}
-        >
-          <FiCheck className="text-blue-600 mr-2 flex-shrink-0" />
-          <span>{feature}</span>
-        </motion.li>
-      ))}
-    </ul>
-  </motion.article>
-));
-
-const FAQItem = memo(({ faq, index }) => (
-  <motion.div
-    key={index}
-    initial={{ opacity: 0, x: -50 }}
-    whileInView={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    whileHover={{ 
-      scale: 1.02,
-      backgroundColor: "rgba(255, 255, 255, 0.9)" 
-    }}
-    className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg"
-  >
-    <h3 
-      className="text-lg font-semibold text-gray-900 mb-2"
-      itemProp="name"
-    >
-      {faq.question}
-    </h3>
-    <div
-      itemScope
-      itemProp="acceptedAnswer"
-      itemType="https://schema.org/Answer"
-    >
-      <p className="text-gray-600" itemProp="text">
-        {faq.answer}
-      </p>
-    </div>
-  </motion.div>
-));
-
 const HeroSection = styled.div`
   position: relative;
   min-height: 100vh;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.3) 100%),
-    url('src/assets/img/audiovideo.jpg');
+    url('src/assets/img/white.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -232,7 +101,7 @@ const HeroSection = styled.div`
   overflow: hidden;
 `;
 
-const HeroContent = styled.div`
+const HeroCon = styled.div`
   position: relative;
   width: 100%;
   max-width: 1400px;
@@ -293,32 +162,126 @@ const CtaButton = styled.a`
   }
 `;
 
+// Add this configuration before the Service component
+const helmetContext = {};
+
 const Service = () => {
   const navigate = useNavigate();
 
   return (
     <>
-      <Helmet>
-        <title>Professional Digital Services - Web, Mobile & Cloud Solutions</title>
-        <meta name="description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
-        <meta name="keywords" content="web development, mobile apps, cloud solutions, digital marketing, SEO, React, Node.js" />
-        <link rel="canonical" href="https://yourwebsite.com/services" />
-        
-        {/* Open Graph tags */}
-        <meta property="og:title" content="Professional Digital Services - Web, Mobile & Cloud Solutions" />
-        <meta property="og:description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourwebsite.com/services" />
-        
-        {/* Twitter Card tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Professional Digital Services - Web, Mobile & Cloud Solutions" />
-        <meta name="twitter:description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
-      </Helmet>
+      <HelmetProvider context={helmetContext}>
+        <Helmet>
+          <title>Professional Digital Services - Web, Mobile & Cloud Solutions</title>
+          <meta name="description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
+          <meta name="keywords" content="web development, mobile apps, cloud solutions, digital marketing, SEO, React, Node.js" />
+          <link rel="canonical" href="https://yourwebsite.com/services" />
+          
+          {/* Open Graph tags */}
+          <meta property="og:title" content="Professional Digital Services - Web, Mobile & Cloud Solutions" />
+          <meta property="og:description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://yourwebsite.com/services" />
+          
+          {/* Twitter Card tags */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content="Professional Digital Services - Web, Mobile & Cloud Solutions" />
+          <meta name="twitter:description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
+
+          {/* Schema.org JSON-LD */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebPage",
+                  "@id": "https://yourwebsite.com/services/#webpage",
+                  "url": "https://yourwebsite.com/services/",
+                  "name": "Professional Digital Services - Web, Mobile & Cloud Solutions",
+                  "description": "Transform your business with our comprehensive digital solutions.",
+                  "isPartOf": { "@id": "https://yourwebsite.com/#website" }
+                },
+                {
+                  "@type": "Organization",
+                  "@id": "https://yourwebsite.com/#organization",
+                  "name": "Your Company Name",
+                  "url": "https://yourwebsite.com",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://yourwebsite.com/logo.png"
+                  }
+                },
+                {
+                  "@type": "BreadcrumbList",
+                  "itemListElement": [
+                    {
+                      "@type": "ListItem",
+                      "position": 1,
+                      "item": {
+                        "@id": "https://yourwebsite.com/",
+                        "name": "Home"
+                      }
+                    },
+                    {
+                      "@type": "ListItem",
+                      "position": 2,
+                      "item": {
+                        "@id": "https://yourwebsite.com/services/",
+                        "name": "Services"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "@type": "ItemList",
+                  "itemListElement": [
+                    {
+                      "@type": "Service",
+                      "name": "Web Development",
+                      "description": "Creating modern, responsive websites and web applications",
+                      "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStock"
+                      }
+                    },
+                    {
+                      "@type": "Service",
+                      "name": "Mobile Apps",
+                      "description": "Native and cross-platform mobile solutions",
+                      "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStock"
+                      }
+                    },
+                    {
+                      "@type": "Service",
+                      "name": "Cloud Solutions",
+                      "description": "Scalable and secure cloud infrastructure",
+                      "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStock"
+                      }
+                    },
+                    {
+                      "@type": "Service",
+                      "name": "Digital Marketing",
+                      "description": "Comprehensive digital marketing strategies",
+                      "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStock"
+                      }
+                    }
+                  ]
+                }
+              ]
+            })}
+          </script>
+        </Helmet>
+      </HelmetProvider>
 
       <div className="relative min-h-[120vh] bg-cover bg-center bg-fixed overflow-hidden"
            style={{
-             backgroundImage: `linear-gradient(165deg, rgba(37, 99, 235, 0.95) 0%, rgba(37, 99, 235, 0.4) 25%, rgba(0, 0, 0, 0) 50%), url('src/assets/img/audiovideo.jpg')`
+             backgroundImage: `linear-gradient(165deg, rgba(37, 99, 235, 0.95) 0%, rgba(37, 99, 235, 0.4) 25%, rgba(0, 0, 0, 0) 50%), url('src/assets/img/white.webp')`
            }}>
         <div className="container mx-auto px-6 min-h-screen flex items-center relative z-10 pt-32">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -368,8 +331,7 @@ const Service = () => {
 
                 {/* Stats Section */}
                 <div className="grid grid-cols-3 gap-8 pt-12 border-t border-gray-200 mt-12">
-                  {[
-                    { number: "500+", label: "Projects Completed" },
+                  {[{ number: "500+", label: "Projects Completed" },
                     { number: "98%", label: "Client Satisfaction" },
                     { number: "24/7", label: "Expert Support" }
                   ].map((stat, index) => (
@@ -391,8 +353,7 @@ const Service = () => {
             {/* Right Side - Feature Cards */}
             <div className="lg:col-span-5 hidden lg:block">
               <div className="grid grid-cols-2 gap-4 relative">
-                {[
-                  { icon: "⚡", title: "Lightning Fast", desc: "Optimized Performance" },
+                {[{ icon: "⚡", title: "Lightning Fast", desc: "Optimized Performance" },
                   { icon: "🛡️", title: "Enterprise Security", desc: "Bank-Grade Protection" },
                   { icon: "🔄", title: "Scalable Solutions", desc: "Grow with Confidence" },
                   { icon: "💡", title: "Innovation First", desc: "Cutting-edge Tech" }
@@ -566,17 +527,7 @@ const Service = () => {
         </div>
       </section>
 
-      {/* CTA Section - Add semantic HTML */}
-      <section aria-label="Call to Action" className="bg-gradient-to-r from-gray-100 to-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Ready to Transform Your Business?
-          </h2>
-          <button className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
-            Get Started Today
-          </button>
-        </div>
-      </section>
+    
     </>
   );
 };
@@ -584,7 +535,7 @@ const Service = () => {
 const MemoizedService = memo(Service);
 
 const ServiceWithMeta = memo(() => (
-  <>
+  <HelmetProvider context={helmetContext}>
     <Helmet>
       <title>Professional Digital Services - Web, Mobile & Cloud Solutions</title>
       <meta name="description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
@@ -601,9 +552,98 @@ const ServiceWithMeta = memo(() => (
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Professional Digital Services - Web, Mobile & Cloud Solutions" />
       <meta name="twitter:description" content="Transform your business with our comprehensive digital solutions. Expert web development, mobile apps, cloud solutions, and digital marketing services." />
+
+      {/* Schema.org JSON-LD */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebPage",
+              "@id": "https://yourwebsite.com/services/#webpage",
+              "url": "https://yourwebsite.com/services/",
+              "name": "Professional Digital Services - Web, Mobile & Cloud Solutions",
+              "description": "Transform your business with our comprehensive digital solutions.",
+              "isPartOf": { "@id": "https://yourwebsite.com/#website" }
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://yourwebsite.com/#organization",
+              "name": "Your Company Name",
+              "url": "https://yourwebsite.com",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://yourwebsite.com/logo.png"
+              }
+            },
+            {
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "item": {
+                    "@id": "https://yourwebsite.com/",
+                    "name": "Home"
+                  }
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "item": {
+                    "@id": "https://yourwebsite.com/services/",
+                    "name": "Services"
+                  }
+                }
+              ]
+            },
+            {
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "Service",
+                  "name": "Web Development",
+                  "description": "Creating modern, responsive websites and web applications",
+                  "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "name": "Mobile Apps",
+                  "description": "Native and cross-platform mobile solutions",
+                  "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "name": "Cloud Solutions",
+                  "description": "Scalable and secure cloud infrastructure",
+                  "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "name": "Digital Marketing",
+                  "description": "Comprehensive digital marketing strategies",
+                  "offers": {
+                    "@type": "Offer",
+                    "availability": "https://schema.org/InStock"
+                  }
+                }
+              ]
+            }
+          ]
+        })}
+      </script>
     </Helmet>
     <MemoizedService />
-  </>
+  </HelmetProvider>
 ));
 
-export default ServiceWithMeta;
+export default memo(ServiceWithMeta);

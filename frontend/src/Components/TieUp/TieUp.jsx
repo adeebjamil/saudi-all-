@@ -2,6 +2,7 @@
 import React, { useMemo, memo } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const TieUpSection = styled.section`
   position: relative;
@@ -9,7 +10,7 @@ const TieUpSection = styled.section`
     rgba(37, 99, 235, 0.95) 0%, 
     rgba(37, 99, 235, 0.4) 25%, 
     rgba(0, 0, 0, 0) 50%),
-    url('src/assets/img/white.jpg');
+    url('src/assets/img/white.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -47,7 +48,7 @@ const TieUp = () => {
         company: 'Uniview Technologies Co., Ltd.',
         description:
           'Uniview is a global leader in video surveillance solutions, renowned for its innovative technologies, high-quality products, and commitment to providing comprehensive security solutions. ',
-        image: 'src/assets/img/unv/unv.png', // Replace with your image path
+        image: 'src/assets/img/unv/unv.webp', // Replace with your image path
         stats: '500+ Projects Delivered',
         color: 'bg-sky-50',
         link: '/unv',
@@ -58,7 +59,7 @@ const TieUp = () => {
         company: 'Hikvision Digital Technology Co., Ltd.',
         description:
           'Hikvision’s leadership in the security industry is underpinned by their dedication to innovation. They continuously push the boundaries of what is possible in surveillance technology, offering features like AI-powered .',
-        image: 'src/assets/img/hikvision/hikvision.jpg', // Replace with your image path
+        image: 'src/assets/img/hikvision/hikvision.webp', // Replace with your image path
         stats: '100+ Countries Served',
         color: 'bg-blue-50',
         link: '/hikvision',
@@ -69,7 +70,7 @@ const TieUp = () => {
         company: 'Dahua Technology Co., Ltd',
         description:
           'Dahua’s technological leadership is demonstrated by innovations such as AI-powered surveillance systems, thermal imaging, and facial recognition technology. ',
-        image: 'src/assets/img/dahua/dahua.png', // Replace with your image path
+        image: 'src/assets/img/dahua/dahua.webp', // Replace with your image path
         stats: '50M+ Users Reached',
         color: 'bg-indigo-50',
         link: '/dahua',
@@ -145,46 +146,53 @@ const TieUp = () => {
   ));
 
   return (
-    <TieUpSection aria-label="Featured Clients Section">
-      <div className="container mx-auto px-4 relative">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="text-center mb-16"
-        >
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-5xl font-bold text-blue-900 mb-4"
+    <HelmetProvider>
+      <Helmet>
+        <title>Our Featured Clients | Your Company Name</title>
+        <meta name="description" content="Discover our featured clients and partners who trust us for their business needs. Learn more about our collaborations and success stories." />
+        <meta name="keywords" content="featured clients, business partners, collaborations, Your Company Name" />
+      </Helmet>
+      <TieUpSection aria-label="Featured Clients Section">
+        <div className="container mx-auto px-4 relative">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            className="text-center mb-16"
           >
-            Our Featured Clients
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-xl text-black font-medium"
-          >
-            Trusted by industry leaders worldwide
-          </motion.p>
-        </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-5xl font-bold text-blue-900 mb-4"
+            >
+              Our Featured Clients
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-xl text-black font-medium"
+            >
+              Trusted by industry leaders worldwide
+            </motion.p>
+          </motion.div>
 
-        <motion.div
-          role="list"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {features.map((feature) => (
-            <FeatureCard key={feature.id} feature={feature} />
-          ))}
-        </motion.div>
-      </div>
-    </TieUpSection>
+          <motion.div
+            role="list"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {features.map((feature) => (
+              <FeatureCard key={feature.id} feature={feature} />
+            ))}
+          </motion.div>
+        </div>
+      </TieUpSection>
+    </HelmetProvider>
   );
 };
 

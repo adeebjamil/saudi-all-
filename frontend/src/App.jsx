@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';  // Import Suspense and lazy
+import React, { Suspense, lazy } from 'react';
 import NavBar from './Components/NavBar';
 import Footer from './Components/Footer';
 import { HelmetProvider } from 'react-helmet-async';
@@ -6,11 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Loading from './Components/Lazylaoding/Loading'; // Import the Loading component
 
 // Lazily load components using React.lazy()
-const Hero = lazy(() => import('./Components/Hero'));
-const Features = lazy(() => import('./Components/Features'));
-const Blog = lazy(() => import('./Components/Blog'));
-const Logo = lazy(() => import('./Components/logo'));
-const Newsletter = lazy(() => import('./Components/Newsletter'));
+const Home = lazy(() => import('./pages/Home'));
 const About = lazy(() => import('./pages/About'));
 const Service = lazy(() => import('./pages/Service'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -31,18 +27,7 @@ const App = () => {
           <Suspense fallback={<Loading />}> {/* Suspense to show loading state */}
             <Routes>
               {/* Home Page */}
-              <Route 
-                path="/" 
-                element={
-                  <>
-                    <Hero />
-                    <Features />
-                    <Blog />
-                    <Logo />
-                    <Newsletter />
-                  </>
-                } 
-              />
+              <Route path="/" element={<Home />} />
               {/* About Page */}
               <Route path="/About" element={<About />} />
               {/* Service Page */}

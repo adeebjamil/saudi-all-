@@ -1,7 +1,0 @@
-User-agent: *
-Disallow: /admin/
-Disallow: /login/
-Disallow: /register/
-Allow: /
-
-Sitemap: https://www.lovosistech.com/sitemap.xml
